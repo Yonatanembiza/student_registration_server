@@ -27,16 +27,18 @@ class Student {
         if (index !== -1) return db.splice(index, 1);
     }
     static updateStudentById(id, updates){
-        let student=Student.getStudentById(id);
-        console.log("Before Update : ", student);
+        // let student=Student.getStudentById(id);
         let index = db.findIndex(s => s.id == id)
-        if(index !==-1){
+        if(index !== -1){
             Object.assign(db[index],updates);
-            console.log("After Update : ", db[index]);
+            // db[index].id = updates.id;
+            // db[index].name = updates.name;
+            // deb[index].program = updates.program;
+            return db[index];
         }
     }
     static filterStudentsByProgram(program){
-        return db.filter(s=>s.program===program)
+        return db.filter(s=>s.program===program);
     }
 
 }

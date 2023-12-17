@@ -29,6 +29,28 @@ let controller = {
         let newCreatedStudent = student.addStudent();
         if (newCreatedStudent) res.status(200).json(newCreatedStudent);
         else res.status(404).json({ message: "already registered.." })
+    },
+    updateStudentById: function (req, res, next) {
+        let id = req.params.id;
+        let updates = req.body;
+        console.log('updates', updates)
+        let updatedStudent = Student.updateStudentById(id, updates)
+        if (updatedStudent) {
+            res.status(200).json(updatedStudent)
+        } else {
+            res.status(404).json({ message: "Student Not Found!" })
+        }
+    },
+    filterStudentsByProgram: function(req, res, next){
+        let programName=req.query.program;
+        let students=Student.filterStudentsByProgram(programName);
+        if(students.length > 0){
+            console.log("Students found");
+            res.status(200).json(students);
+        } else {
+            console.log("Students not found");
+            res.status(404).send(`No Students in ${programName} Program`);
+        }
     }
 
 }

@@ -1,15 +1,16 @@
-let express = require("express");
-let router = express.Router();
-let studentController = require("../controller/studentController");
+const express = require("express");
+const router = express.Router();
+const studentController = require("../controller/studentController");
 
-router.get('/:id', studentController.getStudentById)
-router.post('/', studentController.createStudent)
-router.delete('/:id', studentController.deleteStudentById)
-router.get('/', studentController.getStudents)
-router.put('/:id',)
-router.get('/search',) //filtering by program use queryString
-router.put('/:id', studentController.updateStudentById);
+// Ensure that 'body-parser' middleware is used in your main application file
+
+// Reorder the routes to follow a logical CRUD order
+router.get('/', studentController.getStudents);
+router.post('/', studentController.createStudent);
 router.get('/search', studentController.filterStudentsByProgram);
+router.get('/:id', studentController.getStudentById);
+router.put('/:id', studentController.updateStudentById);
+router.delete('/:id', studentController.deleteStudentById);
 
 
 module.exports = router;
