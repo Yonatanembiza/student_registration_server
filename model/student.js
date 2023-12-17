@@ -26,6 +26,18 @@ class Student {
         let index = db.findIndex(s => s.id == id)
         if (index !== -1) return db.splice(index, 1);
     }
+    static updateStudentById(id, updates){
+        let student=Student.getStudentById(id);
+        console.log("Before Update : ", student);
+        let index = db.findIndex(s => s.id == id)
+        if(index !==-1){
+            Object.assign(db[index],updates);
+            console.log("After Update : ", db[index]);
+        }
+    }
+    static filterStudentsByProgram(program){
+        return db.filter(s=>s.program===program)
+    }
 
 }
 
