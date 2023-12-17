@@ -7,5 +7,5 @@ app.use(express.json())
 app.use("/students", studentRouter)
 
 app.listen(3000, () => {
-    console.log('Server is started on 3000');
+    console.log('Server is started on 3000...');
 })
